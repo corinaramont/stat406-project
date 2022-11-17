@@ -41,7 +41,7 @@ Some helpful resources for **Git**:
 * Clone your repository to your local machine using
 `git clone address_to_folder` such as for this specific repository:
 
-`git clone https://github.com/corinaramont/capstone_project`
+`git clone https://github.com/corinaramont/stat406-project`
 
 * Open Rstudio and make sure you have the version control enabled, see [Rstudio version control](https://support.rstudio.com/hc/en-us/articles/200532077?version=1.1.463&mode=desktop) for further help.
 
