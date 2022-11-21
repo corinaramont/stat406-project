@@ -1,16 +1,7 @@
 setwd("~/stat406-project/datasets")
 data = read.csv("data.csv")
 
-for(i in nrow(data)){
-  if(data$diagnosis[i] == "M"){
-    data$diagnosis[i] = 1
-  }else{
-    data$diagnosis[i] = 0
-  }
-}
-
-
-model = glm(diagnosis ~ radius_mean + texture_mean + 
+model = glm(as.factor(diagnosis) ~ radius_mean + texture_mean + 
               perimeter_mean + area_mean + smoothness_mean + 
               compactness_mean + concavity_mean + concave.points_mean +
               symmetry_mean + fractal_dimension_mean + radius_se + 
@@ -20,4 +11,4 @@ model = glm(diagnosis ~ radius_mean + texture_mean +
               texture_worst + perimeter_worst + area_worst + 
               smoothness_worst + compactness_worst + concavity_worst + 
               concave.points_worst + symmetry_worst + fractal_dimension_worst,
-            data = data, family="binomial")
+            data = data, family=binomial)
