@@ -12,3 +12,5 @@ model = glm(as.factor(diagnosis) ~ radius_mean + texture_mean +
               smoothness_worst + compactness_worst + concavity_worst + 
               concave.points_worst + symmetry_worst + fractal_dimension_worst,
             data = data, family=binomial)
+
+step(model, direction = "backward")
