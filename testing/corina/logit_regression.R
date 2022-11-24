@@ -1,3 +1,9 @@
+library(lme4)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lmerTest)
+
 setwd("~/stat406-project/datasets")
 data = read.csv("data.csv")
 
@@ -9,6 +15,8 @@ data = read.csv("data.csv")
 #  smoothness_worst + compactness_worst + concavity_worst + 
 #  concave.points_worst + symmetry_worst + fractal_dimension_worst
 
+
+#fitting model with their means
 model = glm(as.factor(diagnosis) ~ radius_mean + texture_mean + 
               perimeter_mean + area_mean + smoothness_mean + 
               compactness_mean + concavity_mean + concave.points_mean +
@@ -18,6 +26,7 @@ summary(model)
 
 step(model, direction = "backward")
 
+#fitting model with "worst" scenarios
 model_w = glm(as.factor(diagnosis) ~ radius_worst + texture_worst + perimeter_worst + area_worst + 
                 smoothness_worst + compactness_worst + concavity_worst + 
                 concave.points_worst + symmetry_worst + fractal_dimension_worst,
@@ -25,6 +34,7 @@ model_w = glm(as.factor(diagnosis) ~ radius_worst + texture_worst + perimeter_wo
 summary(model_w)
 step(model_w, direction = "backward")
 
+#fitting new models with aic suggestions
 new_model= glm(as.factor(diagnosis) ~ radius_mean + texture_mean + area_mean 
                + smoothness_mean + concave.points_mean + symmetry_mean, 
                data = data, family = binomial)
@@ -32,3 +42,10 @@ new_model_w = glm(as.factor(diagnosis) ~ texture_worst +
                     area_worst + smoothness_worst + compactness_worst + 
                     concavity_worst + concave.points_worst + symmetry_worst,
                   data = data, family = binomial)
+
+
+#compare log likelihood values
+logLik(model)
+logLik(model_w)
+logLik(new_model)
+logLik(new_model_w)
