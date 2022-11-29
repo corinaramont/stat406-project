@@ -43,10 +43,18 @@ model_w = glm(as.factor(diagnosis) ~ radius_worst + texture_worst + perimeter_wo
 summary(model_w)
 step(model_w, direction = "backward")
 
-#fitting new models with aic suggestions
+
+
+#fitting new models with aic suggestions (mean)
 new_model= glm(as.factor(diagnosis) ~ radius_mean + texture_mean + area_mean 
                + smoothness_mean + concave.points_mean + symmetry_mean, 
                data = data1, family = binomial)
+
+
+
+
+
+#fitting new models w/ aic suggestions (worst)
 new_model_w = glm(as.factor(diagnosis) ~ texture_worst + 
                     area_worst + smoothness_worst + compactness_worst + 
                     concavity_worst + concave.points_worst + symmetry_worst,
