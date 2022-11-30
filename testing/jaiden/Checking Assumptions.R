@@ -42,35 +42,41 @@ logit = log(probabilities/(1-probabilities))
 
 library('ggplot2')
 
-ggplot(data1, aes(logit, radius_mean))+
+plt1 = ggplot(data, aes(logit, radius_mean))+
   geom_point(size=0.5, alpha=0.5)+
   geom_smooth(method = "loess")+
   theme_bw()
 
-ggplot(data1, aes(logit, area_mean))+
+
+plt2 = ggplot(data, aes(logit, area_mean))+
   geom_point(size=0.5, alpha=0.5)+
   geom_smooth(method = "loess")+
   theme_bw()
 
-ggplot(data1, aes(logit, smoothness_mean))+
+plt3 = ggplot(data, aes(logit, smoothness_mean))+
   geom_point(size=0.5, alpha=0.5)+
   geom_smooth(method = "loess")+
   theme_bw()
 
-ggplot(data1, aes(logit, texture_mean))+
+plt4 = ggplot(data, aes(logit, texture_mean))+
   geom_point(size=0.5, alpha=0.5)+
   geom_smooth(method = "loess")+
   theme_bw()
 
-ggplot(data1, aes(logit, symmetry_mean))+
+plt5 = ggplot(data, aes(logit, symmetry_mean))+
   geom_point(size=0.5, alpha=0.5)+
   geom_smooth(method = "loess")+
   theme_bw()
 
-ggplot(data1, aes(logit, concave.points_mean))+
+plt6 = ggplot(data, aes(logit, concave.points_mean))+
   geom_point(size=0.5, alpha=0.5)+
   geom_smooth(method = "loess")+
   theme_bw()
+
+install.packages('patchwork')
+library('patchwork')
+
+plt1 + plt2 + plt3 + plt4 + plt5 + plt6
 
 # All features are fairly linear
 
