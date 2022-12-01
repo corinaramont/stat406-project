@@ -66,3 +66,5 @@ logLik(model)
 logLik(model_w)
 logLik(new_model)
 logLik(new_model_w)
+
+
